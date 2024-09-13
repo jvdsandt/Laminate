@@ -7,9 +7,32 @@
 	<groupId>com.github.jvdsandt.laminate</groupId>
 	<artifactId>laminate</artifactId>
 	<version>0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
 	<name>Laminate</name>
 	<description>A Java library to export JDBC ResultSet data to Parquet files</description>
-	<packaging>pom</packaging>
+	<url>https://github.com/jvdsandt/Laminate</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Jan van de Sandt</name>
+			<email>jvdsandt@gmail.com</email>
+			<url>https://github.com/jvdsandt</url>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/jvdsandt/Laminate.git</connection>
+		<developerConnection>scm:git:ssh://github.com/jvdsandt/Laminate.git</developerConnection>
+		<url>http://github.com/jvdsandt/Laminate/tree/main</url>
+	</scm>
 
 	<modules>
 		<module>laminate-jdbc</module>
@@ -23,11 +46,5 @@
 		<parquet.version>1.14.2</parquet.version>
 		<junit.version>5.8.1</junit.version>
 	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-
-		</dependencies>
-	</dependencyManagement>
 
 </project>
