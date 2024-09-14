@@ -24,7 +24,7 @@ jobs:
         run: |
           # Strip off the first character of the tag name
           MVN_VERSION=${{ github.event.release.tag_name }}
-          MVN_VERSION=${VERSION:1}
+          MVN_VERSION=${MVN_VERSION:1}
           mvn -B versions:set -DnewVersion=$MVN_VERSION
       - name: Publish package
         run: mvn -B -P release deploy -DskipTests
