@@ -52,6 +52,13 @@ public class Laminate {
 		}
 	}
 
+	/**
+	 * Write the ResultSet to the file path using the specified mapping.
+	 */
+	public static void write(ResultSet rs, Path path, LaminateGroupMapping mapping) {
+		write(rs, new LocalOutputFile(path), mapping);
+	}
+
 	public static void write(ResultSet rs, ParquetWriter<ResultSet> writer) throws SQLException, IOException {
 		while (rs.next()) {
 			writer.write(rs);
