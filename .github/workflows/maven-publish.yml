@@ -21,9 +21,13 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_SIGNING_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
       - name: Set version
-        run: mvn -B versions:set -DnewVersion=${{ github.event.release.tag_name }}
+        run: |
+          # Strip off the first character of the tag name
+          MVN_VERSION=${{ github.event.release.tag_name }}
+          MVN_VERSION=${VERSION:1}
+          mvn -B versions:set -DnewVersion=$MVN_VERSION
       - name: Publish package
-        run: mvn -P release -B deploy -DskipTests
+        run: mvn -B -P release deploy -DskipTests
         env:
           MAVEN_USERNAME: ${{ secrets.CENTRAL_TOKEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN_PASSWORD }}
