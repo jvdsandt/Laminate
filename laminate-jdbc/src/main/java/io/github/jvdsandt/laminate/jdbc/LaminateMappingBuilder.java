@@ -1,4 +1,4 @@
-package com.github.jvdsandt.laminate.jdbc;
+package io.github.jvdsandt.laminate.jdbc;
 
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateBigDecimalMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateColumnMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateDateMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateDoubleMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateGroupMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateIntMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateLongMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateStringMapping;
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateTimestampMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateBigDecimalMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateColumnMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateDateMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateDoubleMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateGroupMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateIntMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateLongMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateStringMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateTimestampMapping;
 
 /**
  * Builder class for creating LaminateGroupMapping objects from JDBC ResultSetMetaData.

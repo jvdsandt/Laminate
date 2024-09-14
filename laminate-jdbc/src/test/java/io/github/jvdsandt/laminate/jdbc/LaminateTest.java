@@ -1,4 +1,4 @@
-package com.github.jvdsandt.laminate.jdbc;
+package io.github.jvdsandt.laminate.jdbc;
 
 import java.nio.file.Path;
 import java.sql.ResultSet;

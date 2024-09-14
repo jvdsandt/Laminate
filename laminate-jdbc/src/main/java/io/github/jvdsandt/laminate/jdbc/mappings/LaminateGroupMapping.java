@@ -1,9 +1,9 @@
-package com.github.jvdsandt.laminate.jdbc.mappings;
+package io.github.jvdsandt.laminate.jdbc.mappings;
 
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import com.github.jvdsandt.laminate.jdbc.LaminateMappingBuilder;
+import io.github.jvdsandt.laminate.jdbc.LaminateMappingBuilder;
 import org.apache.parquet.schema.MessageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

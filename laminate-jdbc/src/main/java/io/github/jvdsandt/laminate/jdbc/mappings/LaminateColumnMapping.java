@@ -1,4 +1,4 @@
-package com.github.jvdsandt.laminate.jdbc.mappings;
+package io.github.jvdsandt.laminate.jdbc.mappings;
 
 import org.apache.parquet.schema.PrimitiveType;
 import org.apache.parquet.schema.Type;

@@ -1,11 +1,11 @@
-package com.github.jvdsandt.laminate.jdbc;
+package io.github.jvdsandt.laminate.jdbc;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.jvdsandt.laminate.jdbc.mappings.LaminateGroupMapping;
-import com.github.jvdsandt.laminate.jdbc.support.LaminateWriteSupport;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateGroupMapping;
+import io.github.jvdsandt.laminate.jdbc.support.LaminateWriteSupport;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.parquet.conf.ParquetConfiguration;
 import org.apache.parquet.hadoop.ParquetWriter;

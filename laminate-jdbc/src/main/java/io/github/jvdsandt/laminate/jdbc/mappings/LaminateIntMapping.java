@@ -1,4 +1,4 @@
-package com.github.jvdsandt.laminate.jdbc.mappings;
+package io.github.jvdsandt.laminate.jdbc.mappings;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
