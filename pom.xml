@@ -35,6 +35,7 @@
 	</scm>
 
 	<modules>
+		<!-- testing 1-2-3 -->
 		<module>laminate-jdbc</module>
 	</modules>
 
