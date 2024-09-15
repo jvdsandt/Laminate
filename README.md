@@ -7,7 +7,7 @@ A Java library to export JDBC ResultSet data to Parquet files
 <dependency>
   <groupId>io.github.jvdsandt.laminate</groupId>
   <artifactId>laminate-jdbc</artifactId>
-  <version>0.1.6</version>
+  <version>0.1.8</version>
 </dependency>
 ```
 
