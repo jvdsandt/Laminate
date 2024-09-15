@@ -7,7 +7,7 @@ A Java library to export JDBC ResultSet data to Parquet files
 <dependency>
   <groupId>io.github.jvdsandt.laminate</groupId>
   <artifactId>laminate-jdbc</artifactId>
-  <version>0.1.5</version>
+  <version>0.1.6</version>
 </dependency>
 ```
 
@@ -30,8 +30,9 @@ public class Demo {
 		String query = "select * from my_table";
 		try (Connection conn = createConnection(args)) {
 			try (ResultSet rs = conn.createStatement().executeQuery(query)) {
-				LaminateGroupMapping mapping = Laminate.mappingBuilder(rs)
-						.build();
+				LaminateGroupMapping mapping = Laminate.mappingBuilder()
+                        .initFrom(rs.getMetaData())
+                        .build();
 				OutputFile output = new LocalOutputFile(Path.of("my_data.parquet"));
 				Laminate.write(rs, output , mapping);
 			}
