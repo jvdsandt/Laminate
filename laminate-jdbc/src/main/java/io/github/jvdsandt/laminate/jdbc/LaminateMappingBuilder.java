@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import io.github.jvdsandt.laminate.jdbc.mappings.LaminateBigDecimalMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.LaminateBooleanMapping;
 import io.github.jvdsandt.laminate.jdbc.mappings.LaminateColumnMapping;
 import io.github.jvdsandt.laminate.jdbc.mappings.LaminateDateMapping;
 import io.github.jvdsandt.laminate.jdbc.mappings.LaminateDoubleMapping;
@@ -22,32 +23,35 @@ import io.github.jvdsandt.laminate.jdbc.mappings.LaminateTimestampMapping;
  */
 public class LaminateMappingBuilder {
 
-	private ResultSetMetaData metaData;
-
-	private List<LaminateColumnMapping> mappings = new ArrayList<>();
+	private final List<LaminateColumnMapping> mappings = new ArrayList<>();
 	private String messageTypeName = "Record";
 
-	public LaminateMappingBuilder(ResultSetMetaData metaData) {
-		this.metaData = metaData;
+	public LaminateMappingBuilder() {
+		super();
 	}
 
-	public LaminateMappingBuilder init() throws SQLException {
+	public LaminateMappingBuilder(ResultSetMetaData metaData) throws SQLException {
+		this();
+		initFrom(metaData);
+	}
+
+	public LaminateMappingBuilder initFrom(ResultSetMetaData metaData) throws SQLException {
 		for (int i = 1; i <= metaData.getColumnCount(); i++) {
-			initFromColumn(i);
+			initFromColumn(metaData, i);
 		}
 		return this;
 	}
 
-	private void initFromColumn(int index) throws SQLException {
+	private void initFromColumn(ResultSetMetaData metaData, int index) throws SQLException {
 		var sqlType = metaData.getColumnType(index);
 		var isRequired = metaData.isNullable(index) == ResultSetMetaData.columnNoNulls;
 		var parqFieldName = metaData.getColumnName(index).toLowerCase(Locale.ROOT);
 		switch (sqlType) {
 			case Types.INTEGER, Types.SMALLINT, Types.TINYINT:
-				withMapping(new LaminateIntMapping(index, parqFieldName, isRequired));
+				addIntMapping(index, parqFieldName, isRequired);
 				break;
 			case Types.BIGINT:
-				withMapping(new LaminateLongMapping(index, parqFieldName, isRequired));
+				addLongMapping(index, parqFieldName, isRequired);
 				break;
 			case Types.NUMERIC, Types.DECIMAL:
 				int precision = metaData.getPrecision(index);
@@ -60,6 +64,9 @@ public class LaminateMappingBuilder {
 				break;
 			case Types.DOUBLE:
 				withMapping(new LaminateDoubleMapping(index, parqFieldName, isRequired));
+				break;
+			case Types.BOOLEAN:
+				addBooleanMapping(index, parqFieldName, isRequired);
 				break;
 			case Types.VARCHAR, Types.CHAR, Types.CLOB, Types.LONGVARCHAR:
 				withMapping(new LaminateStringMapping(index, parqFieldName, isRequired));
@@ -83,6 +90,22 @@ public class LaminateMappingBuilder {
 	public LaminateMappingBuilder withMessageTypeName(String input) {
 		messageTypeName = input;
 		return this;
+	}
+
+	public LaminateMappingBuilder addIntMapping(int columnIndex, String parqFieldName, boolean isRequired) {
+		return withMapping(new LaminateIntMapping(columnIndex, parqFieldName, isRequired));
+	}
+
+	public LaminateMappingBuilder addLongMapping(int columnIndex, String parqFieldName, boolean isRequired) {
+		return withMapping(new LaminateLongMapping(columnIndex, parqFieldName, isRequired));
+	}
+
+	public LaminateMappingBuilder addBooleanMapping(int columnIndex, String parqFieldName, boolean isRequired) {
+		return withMapping(new LaminateBooleanMapping(columnIndex, parqFieldName, isRequired));
+	}
+
+	public LaminateMappingBuilder addStringMapping(int columnIndex, String parqFieldName, boolean isRequired) {
+		return withMapping(new LaminateStringMapping(columnIndex, parqFieldName, isRequired));
 	}
 
 	public LaminateGroupMapping build() {

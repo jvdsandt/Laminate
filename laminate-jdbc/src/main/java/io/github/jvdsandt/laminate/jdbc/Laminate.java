@@ -24,7 +24,7 @@ public class Laminate {
 	 * Answer a LaminateMappingBuilder that is initialized with the metadata from the ResultSet.
 	 */
 	public static LaminateMappingBuilder mappingBuilder(ResultSet rs) throws SQLException {
-		return new LaminateMappingBuilder(rs.getMetaData()).init();
+		return new LaminateMappingBuilder().initFrom(rs.getMetaData());
 	}
 
 	/**

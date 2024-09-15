@@ -15,7 +15,7 @@ public class LaminateIntMapping extends LaminateColumnMapping {
 	@Override
 	public void write(ResultSet rs, RecordConsumer rc) throws SQLException {
 		int value = rs.getInt(columnIndex);
-		if (!rs.wasNull()) {
+		if (isRequired || !rs.wasNull()) {
 			rc.startField(parqFieldName, columnIndex - 1);
 			rc.addInteger(value);
 			rc.endField(parqFieldName, columnIndex - 1);

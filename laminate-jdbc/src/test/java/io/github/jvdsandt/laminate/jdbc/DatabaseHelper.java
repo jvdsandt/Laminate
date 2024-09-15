@@ -1,5 +1,6 @@
 package io.github.jvdsandt.laminate.jdbc;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ public class DatabaseHelper {
 	private Connection connection;
 
 	public DatabaseHelper() throws SQLException {
-		this.connection = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
+		this.connection = DriverManager.getConnection("jdbc:h2:mem:testdb");
 	}
 
 	public void createUsersTable() throws SQLException {
@@ -25,12 +26,12 @@ public class DatabaseHelper {
 		try (Statement stmt = connection.createStatement()) {
 			stmt.execute("""
 				CREATE TABLE products (
-    				id BIGINT PRIMARY KEY,
+					id BIGINT PRIMARY KEY,
 					created_at TIMESTAMP NOT NULL,
 					valid_from DATE,
 					name VARCHAR(255) NOT NULL,
-					price numeric(10, 2),
-					description clob) 	
+					price NUMERIC(10, 2),
+					description CLOB)
 				""");
 		}
 		var insertSql = "INSERT INTO products (id, created_at, valid_from, name, price, description) VALUES (?, ?, ?, ?, ?, ?)";
@@ -56,5 +57,9 @@ public class DatabaseHelper {
 
 	public Connection getConnection() {
 		return connection;
+	}
+
+	public Statement createStatement() throws SQLException {
+		return connection.createStatement();
 	}
 }

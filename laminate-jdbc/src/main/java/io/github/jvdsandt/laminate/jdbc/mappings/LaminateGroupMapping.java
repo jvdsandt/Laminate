@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
  * It can generate the Parquet GroupType or MessageType object, and it knows how to write
  * the data from the JDBC ResultSet to a Parquet file.
  *
- * It can be initialized from a JDBC ResultSetMetaData object. If needed, the column mappings
- * can be customized.
+ * Use a LaminateMappingBuilder to create a correctly initialized instance of this class.
  */
 public class LaminateGroupMapping {
 
@@ -24,8 +23,8 @@ public class LaminateGroupMapping {
 	private final String messageTypeName;
 
 	public static LaminateGroupMapping buildFrom(ResultSetMetaData metaData) throws SQLException {
-		return new LaminateMappingBuilder(metaData)
-				.init()
+		return new LaminateMappingBuilder()
+				.initFrom(metaData)
 				.build();
 	}
 
