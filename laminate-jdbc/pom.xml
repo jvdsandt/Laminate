@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.github.jvdsandt.laminate</groupId>
 		<artifactId>laminate</artifactId>
-		<version>0.1.5-SNAPSHOT</version>
+		<version>0.1.8</version>
 	</parent>
 
 	<artifactId>laminate-jdbc</artifactId>
@@ -40,8 +40,7 @@
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-common</artifactId>
-			<version>3.3.6</version>
-			<scope>compile</scope>
+			<version>${hadoop.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.commons</groupId>
@@ -226,9 +225,15 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.2</version>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-core</artifactId>
+			<version>${hadoop.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>

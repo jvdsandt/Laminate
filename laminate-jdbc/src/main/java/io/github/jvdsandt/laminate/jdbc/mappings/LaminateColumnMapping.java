@@ -11,20 +11,13 @@ import org.apache.parquet.schema.Types;
 public abstract class LaminateColumnMapping extends LaminateJdbcMapping {
 
 	protected final int columnIndex;
+	protected int fieldIndex;
 
-	protected final boolean isRequired;
-	protected String parqFieldName;
-
-	public LaminateColumnMapping(int columnIndex, String parqFieldName, boolean isRequired) {
+	public LaminateColumnMapping(int columnIndex) {
 		this.columnIndex = columnIndex;
-		this.parqFieldName = parqFieldName;
-		this.isRequired = isRequired;
 	}
 
-	public void addField(Types.MessageTypeBuilder builder) {
-		Type.Repetition repetition = isRequired ? Type.Repetition.REQUIRED : Type.Repetition.OPTIONAL;
-		builder.primitive(primitiveType(), repetition).named(parqFieldName);
+	void setFieldIndex(int newValue) {
+		this.fieldIndex = newValue;
 	}
-
-	public abstract PrimitiveType.PrimitiveTypeName primitiveType();
 }

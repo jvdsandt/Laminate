@@ -6,7 +6,7 @@
 
 	<groupId>io.github.jvdsandt.laminate</groupId>
 	<artifactId>laminate</artifactId>
-	<version>0.1.5-SNAPSHOT</version>
+	<version>0.1.8</version>
 	<packaging>pom</packaging>
 
 	<name>Laminate</name>
@@ -44,6 +44,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<parquet.version>1.14.2</parquet.version>
+		<hadoop.version>3.3.6</hadoop.version>
 		<junit.version>5.8.1</junit.version>
 	</properties>
 
