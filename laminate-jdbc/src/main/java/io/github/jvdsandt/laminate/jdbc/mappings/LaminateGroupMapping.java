@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import io.github.jvdsandt.laminate.jdbc.LaminateMappingBuilder;
 import org.apache.parquet.schema.MessageType;
+import org.apache.parquet.schema.Types;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,9 +35,10 @@ public class LaminateGroupMapping {
 	}
 
 	public MessageType toMessageType() {
-		org.apache.parquet.schema.Types.MessageTypeBuilder builder = org.apache.parquet.schema.Types.buildMessage();
-		for (var mapping : mappings) {
-			mapping.addField(builder);
+		Types.MessageTypeBuilder builder = Types.buildMessage();
+		for (int i = 0; i < mappings.length; i++) {
+			mappings[i].setFieldIndex(i);
+			builder.addField(mappings[i].getType());
 		}
 		MessageType msgType = builder.named(messageTypeName);
 		LOG.info("Generated schema: {}", msgType);

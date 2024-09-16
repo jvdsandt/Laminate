@@ -6,25 +6,19 @@ import java.sql.SQLException;
 import org.apache.parquet.io.api.RecordConsumer;
 import org.apache.parquet.schema.PrimitiveType;
 
-public class LaminateBooleanMapping extends LaminateColumnMapping {
+public class LaminateBooleanMapping extends LaminateColumnToPrimitiveMapping {
 
-	public LaminateBooleanMapping(int columnIndex, String parqFiledName, boolean isRequired) {
-		super(columnIndex, parqFiledName, isRequired);
+	public LaminateBooleanMapping(int columnIndex, PrimitiveType type) {
+		super(columnIndex, type);
 	}
 
 	@Override
 	public void write(ResultSet rs, RecordConsumer rc) throws SQLException {
 		boolean value = rs.getBoolean(columnIndex);
-		if (isRequired || !rs.wasNull()) {
-			rc.startField(parqFieldName, columnIndex-1);
+		if (isRequired() || !rs.wasNull()) {
+			rc.startField(type.getName(), fieldIndex);
 			rc.addBoolean(value);
-			rc.endField(parqFieldName, columnIndex-1);
+			rc.endField(type.getName(), fieldIndex);
 		}
 	}
-
-	@Override
-	public PrimitiveType.PrimitiveTypeName primitiveType() {
-		return PrimitiveType.PrimitiveTypeName.BOOLEAN;
-	}
-
 }

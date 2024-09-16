@@ -6,25 +6,19 @@ import java.sql.SQLException;
 import org.apache.parquet.io.api.RecordConsumer;
 import org.apache.parquet.schema.PrimitiveType;
 
-public class LaminateIntMapping extends LaminateColumnMapping {
+public class LaminateIntMapping extends LaminateColumnToPrimitiveMapping {
 
-	public LaminateIntMapping(int columnIndex, String parqFiledName, boolean isRequired) {
-		super(columnIndex, parqFiledName, isRequired);
+	public LaminateIntMapping(int columnIndex, PrimitiveType type) {
+		super(columnIndex, type);
 	}
 
 	@Override
 	public void write(ResultSet rs, RecordConsumer rc) throws SQLException {
 		int value = rs.getInt(columnIndex);
-		if (isRequired || !rs.wasNull()) {
-			rc.startField(parqFieldName, columnIndex - 1);
+		if (isRequired() || !rs.wasNull()) {
+			rc.startField(type.getName(), fieldIndex);
 			rc.addInteger(value);
-			rc.endField(parqFieldName, columnIndex - 1);
+			rc.endField(type.getName(), fieldIndex);
 		}
 	}
-
-	@Override
-	public PrimitiveType.PrimitiveTypeName primitiveType() {
-		return PrimitiveType.PrimitiveTypeName.INT32;
-	}
-
 }

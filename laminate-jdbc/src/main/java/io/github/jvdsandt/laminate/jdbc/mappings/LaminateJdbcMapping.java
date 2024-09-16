@@ -4,11 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.parquet.io.api.RecordConsumer;
+import org.apache.parquet.schema.Type;
 
 /**
  * An abstract mapping class for converting JDBC data Parquet data.
  */
 public abstract class LaminateJdbcMapping {
+
+	public abstract Type getType();
 
 	public abstract void write(ResultSet rs, RecordConsumer rc) throws SQLException;
 
