@@ -44,7 +44,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<parquet.version>1.14.2</parquet.version>
-		<junit.version>5.8.1</junit.version>
+		<junit.version>5.11.0</junit.version>
 	</properties>
 
 	<build>
