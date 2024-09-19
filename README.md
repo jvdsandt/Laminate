@@ -1,13 +1,24 @@
+[![Build Status](https://github.com/jvdsandt/Laminate/actions/workflows/maven-build.yml/badge.svg)](https://github.com/jvdsandt/Laminate/actions)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.jvdsandt.laminate/laminate.svg)](https://repo1.maven.org/maven2/io/github/jvdsandt/laminate/laminate)
+[![License](https://img.shields.io/:license-mit-blue.svg)](https://opensource.org/license/mit)
+
 # Laminate
 A Java library to export JDBC ResultSet data to Parquet files
 
-## Usage
+## Features
+- Export JDBC ResultSet data to Parquet files
+- Automatically generate a Parquet schema based on the ResultSet metadata
+- Optionally customize the mapping and Parquet schema for custom conversions or to support advanced JDBC datatypes like arrays
+
+## Installation
+
+Add this library to your Java project using Maven:
 
 ```xml
 <dependency>
   <groupId>io.github.jvdsandt.laminate</groupId>
   <artifactId>laminate-jdbc</artifactId>
-  <version>0.1.8</version>
+  <version>0.1.9</version>
 </dependency>
 ```
 
@@ -45,3 +56,4 @@ public class Demo {
 	}
 }
 ```
+See the class [ApiTest](https://github.com/jvdsandt/Laminate/blob/main/laminate-jdbc/src/test/java/io/github/jvdsandt/laminate/jdbc/ApiTest.java) for more examples.
