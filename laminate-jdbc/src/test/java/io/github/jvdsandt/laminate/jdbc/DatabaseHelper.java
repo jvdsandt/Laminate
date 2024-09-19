@@ -62,4 +62,8 @@ public class DatabaseHelper {
 	public Statement createStatement() throws SQLException {
 		return connection.createStatement();
 	}
+
+	public PreparedStatement prepareStatement(String sql) throws SQLException {
+		return connection.prepareStatement(sql);
+	}
 }

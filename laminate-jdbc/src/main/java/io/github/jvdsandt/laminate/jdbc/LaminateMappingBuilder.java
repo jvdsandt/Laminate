@@ -7,17 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateBigDecimalMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateBooleanMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateColumnMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateDateMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateDoubleMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateGroupMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateIntMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateLongMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateStringArrayMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateStringMapping;
-import io.github.jvdsandt.laminate.jdbc.mappings.LaminateTimestampMapping;
+import io.github.jvdsandt.laminate.jdbc.mappings.*;
 import org.apache.parquet.schema.LogicalTypeAnnotation;
 import org.apache.parquet.schema.PrimitiveType;
 
@@ -159,6 +149,21 @@ public class LaminateMappingBuilder {
 		return withMapping(new LaminateTimestampMapping(columnIndex, type));
 	}
 
+	public LaminateMappingBuilder addSubgroupMapping(ResultSetMetaData parentMetaData, String parentColumnName, ResultSetMetaData childMetaData, String childColumnName, String parqFieldName, LaminateGroupMapping childMapping) throws SQLException {
+		int parentIndex = getColumnIndex(parentColumnName, parentMetaData);
+		int childIndex = getColumnIndex(childColumnName, childMetaData);
+		if (parentMetaData.getColumnType(parentIndex) != childMetaData.getColumnType(childIndex)) {
+			throw new IllegalArgumentException("Parent and child column types do not match");
+		}
+		return withMapping(new LaminateColumnToGroupMapping(parentIndex, childMapping));
+	}
+
+	/**
+	 * Answer the field name for the given column name. This default implementation just
+	 * answers the column name in lower case.
+	 * @param columnName the column name
+	 * @return the field name to use for the parquet field
+	 */
 	protected String columnNameToFieldName(String columnName) {
 		return columnName.toLowerCase(Locale.ROOT);
 	}
@@ -173,5 +178,14 @@ public class LaminateMappingBuilder {
 		} else {
 			return org.apache.parquet.schema.Types.optional(typeName);
 		}
+	}
+
+	private static int getColumnIndex(String columnName, ResultSetMetaData metaData) throws SQLException {
+		for (int i = 0; i < metaData.getColumnCount(); i++) {
+			if (columnName.equalsIgnoreCase(metaData.getColumnName(i))) {
+				return i;
+			}
+		}
+		throw new IllegalArgumentException("Unknown column name: " + columnName);
 	}
 }
