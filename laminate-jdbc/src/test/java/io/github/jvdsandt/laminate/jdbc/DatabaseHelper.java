@@ -12,6 +12,11 @@ public class DatabaseHelper {
 	private Connection connection;
 
 	public DatabaseHelper() throws SQLException {
+		try {
+			Class.forName("org.h2.Driver");
+		} catch (ClassNotFoundException ex) {
+			throw new RuntimeException("H2 JDBC Driver not found", ex);
+		}
 		this.connection = DriverManager.getConnection("jdbc:h2:mem:testdb");
 	}
 

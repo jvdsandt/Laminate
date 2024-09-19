@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>io.github.jvdsandt.laminate</groupId>
 		<artifactId>laminate</artifactId>
-		<version>0.1.8</version>
+		<version>0.2.0</version>
 	</parent>
 
 	<artifactId>laminate-samples</artifactId>

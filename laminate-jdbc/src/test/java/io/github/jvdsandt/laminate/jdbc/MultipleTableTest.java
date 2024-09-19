@@ -54,7 +54,7 @@ public class MultipleTableTest {
 			LaminateGroupMapping orderMapping = new LaminateMappingBuilder()
 					.initFrom(rs.getMetaData())
 					.withMessageTypeName("Orders")
-					.addSubgroupMapping(rs.getMetaData(), "id", linesRs.getMetaData(), "order_id", "lines", lineMapping)
+//					.addSubgroupMapping(rs.getMetaData(), "id", linesRs.getMetaData(), "order_id", "lines", lineMapping)
 					.build();
 
 			Path output = Path.of("target/orders.parquet");
