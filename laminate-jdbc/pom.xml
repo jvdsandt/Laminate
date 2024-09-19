@@ -6,16 +6,12 @@
 	<parent>
 		<groupId>io.github.jvdsandt.laminate</groupId>
 		<artifactId>laminate</artifactId>
-		<version>0.1.5-SNAPSHOT</version>
+		<version>0.1.9-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>laminate-jdbc</artifactId>
 
-	<properties>
-	</properties>
-
 	<dependencies>
-
 		<dependency>
 			<groupId>org.apache.parquet</groupId>
 			<artifactId>parquet-common</artifactId>
@@ -225,11 +221,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.2</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -263,6 +254,5 @@
 		</dependency>
 
 	</dependencies>
-
 
 </project>

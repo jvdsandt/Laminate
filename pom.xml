@@ -6,7 +6,7 @@
 
 	<groupId>io.github.jvdsandt.laminate</groupId>
 	<artifactId>laminate</artifactId>
-	<version>0.1.5-SNAPSHOT</version>
+	<version>0.1.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Laminate</name>
