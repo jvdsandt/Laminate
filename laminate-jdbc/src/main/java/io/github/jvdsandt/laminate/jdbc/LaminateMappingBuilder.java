@@ -65,7 +65,7 @@ public class LaminateMappingBuilder {
 			case Types.DOUBLE:
 				withMapping(new LaminateDoubleMapping(index, parqFieldName, isRequired));
 				break;
-			case Types.BOOLEAN:
+			case Types.BOOLEAN, Types.BIT:
 				addBooleanMapping(index, parqFieldName, isRequired);
 				break;
 			case Types.VARCHAR, Types.CHAR, Types.CLOB, Types.LONGVARCHAR:
