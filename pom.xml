@@ -43,8 +43,8 @@
 		<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<parquet.version>1.15.0</parquet.version>
-		<junit.version>5.11.4</junit.version>
+		<parquet.version>1.15.2</parquet.version>
+		<junit.version>5.13.3</junit.version>
 	</properties>
 
 	<build>
