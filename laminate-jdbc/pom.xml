@@ -6,10 +6,11 @@
 	<parent>
 		<groupId>io.github.jvdsandt.laminate</groupId>
 		<artifactId>laminate</artifactId>
-		<version>0.1.11-SNAPSHOT</version>
+		<version>0.1.12-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>laminate-jdbc</artifactId>
+	<name>Laminate JDBC</name>
 
 	<dependencies>
 		<dependency>
