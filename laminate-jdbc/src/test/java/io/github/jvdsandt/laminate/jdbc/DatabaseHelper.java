@@ -1,11 +1,6 @@
 package io.github.jvdsandt.laminate.jdbc;
 
-import javax.swing.plaf.nimbus.State;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DatabaseHelper {
 
